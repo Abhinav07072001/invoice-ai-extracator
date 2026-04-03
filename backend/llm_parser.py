@@ -1,9 +1,9 @@
-from google import genai
+import google.generativeai as genai
 import json
+import os
 
-# create Gemini client
-client = genai.Client(api_key="AIzaSyCa8IIalyUh-OQFwVdyFldj-Uf6PyHgozU")
-
+# configure Gemini API
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def parse_invoice(text):
 
@@ -23,10 +23,9 @@ Text:
 """
 
     try:
-        response = client.models.generate_content(
-            model="gemini-1.5-flash-latest",
-            contents=prompt
-        )
+        model = genai.GenerativeModel("gemini-1.5-flash")
+
+        response = model.generate_content(prompt)
 
         result_text = response.text
 
