@@ -1,6 +1,5 @@
 import pytesseract
 from PIL import Image
-import os
 import platform
 
 # Only set path for Windows (local development)
@@ -12,9 +11,14 @@ def extract_text(file_path):
     try:
         image = Image.open(file_path)
 
+        # try OCR
         text = pytesseract.image_to_string(image)
+
+        if not text.strip():
+            return "No text detected in image"
 
         return text
 
     except Exception as e:
-        return str(e)
+        # Handle cases where tesseract is not installed on server
+        return f"OCR error: {str(e)}"
