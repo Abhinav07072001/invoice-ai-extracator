@@ -2,7 +2,7 @@ import google.generativeai as genai
 import json
 import os
 
-# configure Gemini API
+# Configure Gemini
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def parse_invoice(text):
@@ -23,14 +23,12 @@ Text:
 """
 
     try:
-        # Use a stable model supported by the API
-        model = genai.GenerativeModel("gemini-1.0-pro")
+        model = genai.GenerativeModel("gemini-1.5-flash")
 
         response = model.generate_content(prompt)
 
         result_text = response.text
 
-        # Try converting AI output to JSON
         try:
             parsed = json.loads(result_text)
             return parsed
