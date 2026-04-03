@@ -23,8 +23,8 @@ Text:
 """
 
     try:
-        # Updated model name
-        model = genai.GenerativeModel("gemini-1.5-flash-latest")
+        # Use a stable model supported by the API
+        model = genai.GenerativeModel("gemini-1.0-pro")
 
         response = model.generate_content(prompt)
 
