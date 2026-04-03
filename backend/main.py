@@ -1,7 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
-from ocr_service import extract_text
-from llm_parser import parse_invoice
-from supabase_client import supabase
+from backend.ocr_service import extract_text
+from backend.llm_parser import parse_invoice
 import shutil
 import os
 
